@@ -27,6 +27,16 @@
       <version>1.0.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>lotus.domino</groupId>
+      <artifactId>Notes</artifactId>
+      <version>9.0.1.8</version>
+    </dependency>
+    <dependency>
+      <groupId>lotus.domino</groupId>
+      <artifactId>NCSO</artifactId>
+      <version>9.0.1.8</version>
+    </dependency>
   </dependencies>
 
   <build>
