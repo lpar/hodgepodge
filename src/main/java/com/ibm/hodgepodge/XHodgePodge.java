@@ -80,22 +80,6 @@ public class XHodgePodge {
   }
 
   /**
-   * Gets a formatter to handle Domino DateTime.zoneDateTime() parsing to a ZonedDateTime.
-   * @param ndt a NotesDateTime, used to obtain a session if needed
-   * @return
-   * @throws NotesException
-   */
-  /*
-  private static DateTimeFormatter getZonedFormatter(final DateTime ndt) throws NotesException {
-    if (XHodgePodge.zonedFormat == null) {
-      Session session = ndt.getParent();
-      International i18n = session.getInternational();
-      XHodgePodge.zonedFormat = buildFormatter(i18n, true);
-    }
-    return XHodgePodge.zonedFormat;
-  } */
-
-  /**
    * Gets a formatter to handle Domino DateTime.zoneDateTime() parsing to a LocalDateTime.
    * @param ndt a NotesDateTime, used to obtain a session if needed
    * @return
@@ -194,7 +178,7 @@ public class XHodgePodge {
    * @return
    * @throws NotesException
    */
-  public Date toDate(final DateTime dt) throws NotesException {
+  public static Date toDate(final DateTime dt) throws NotesException {
     return dt.toJavaDate();
   }
 
@@ -205,7 +189,7 @@ public class XHodgePodge {
    * @return
    * @throws NotesException
    */
-  public Calendar toCalendar(final DateTime ndt, final String notesTimeZone) throws NotesException {
+  public static Calendar toCalendar(final DateTime ndt, final String notesTimeZone) throws NotesException {
     ZonedDateTime zdt = toZonedDateTime(ndt, notesTimeZone);
     return GregorianCalendar.from(zdt);
   }
@@ -272,7 +256,7 @@ public class XHodgePodge {
    * @return
    * @throws NotesException
    */
-  public DateTime toDateTime(final Session session, final Date d) throws NotesException {
+  public static DateTime toDateTime(final Session session, final Date d) throws NotesException {
     return session.createDateTime(d);
   }
 
@@ -284,7 +268,7 @@ public class XHodgePodge {
    * @return
    * @throws NotesException
    */
-  public DateTime toDateTime(final Session session, final Calendar cal) throws NotesException {
+  public static DateTime toDateTime(final Session session, final Calendar cal) throws NotesException {
     return session.createDateTime(cal);
   }
 
@@ -296,7 +280,7 @@ public class XHodgePodge {
    * @return
    * @throws NotesException
    */
-  public DateTime toDateTime(final Session session, final Instant ins) throws NotesException {
+  public static DateTime toDateTime(final Session session, final Instant ins) throws NotesException {
     return session.createDateTime(Date.from(ins));
   }
 
@@ -308,7 +292,7 @@ public class XHodgePodge {
    * @return
    * @throws NotesException
    */
-  public DateTime toDateTime(final Session session, final ZonedDateTime zdt) throws NotesException {
+  public static DateTime toDateTime(final Session session, final ZonedDateTime zdt) throws NotesException {
     return session.createDateTime(GregorianCalendar.from(zdt));
   }
 
@@ -320,7 +304,7 @@ public class XHodgePodge {
    * @return
    * @throws NotesException
    */
-  public DateTime toDateTime(final Session session, final LocalDateTime ldt) throws NotesException {
+  public static DateTime toDateTime(final Session session, final LocalDateTime ldt) throws NotesException {
     return session.createDateTime(GregorianCalendar.from(ZonedDateTime.of(ldt, ZoneId.systemDefault())));
   }
 
@@ -332,7 +316,7 @@ public class XHodgePodge {
    * @return
    * @throws NotesException
    */
-  public DateTime toDateTime(final Session session, final LocalDate ld) throws NotesException {
+  public static DateTime toDateTime(final Session session, final LocalDate ld) throws NotesException {
     Calendar cal = new GregorianCalendar();
     cal.set(ld.getYear(), ld.getMonthValue() - 1, ld.getDayOfMonth());
     DateTime ndt = session.createDateTime(cal);
@@ -348,7 +332,7 @@ public class XHodgePodge {
    * @return
    * @throws NotesException
    */
-  public DateTime toDateTime(final Session session, final LocalTime lt) throws NotesException {
+  public static DateTime toDateTime(final Session session, final LocalTime lt) throws NotesException {
     Calendar cal = new GregorianCalendar();
     cal.set(Calendar.HOUR_OF_DAY, lt.getHour());
     cal.set(Calendar.MINUTE, lt.getMinute());
